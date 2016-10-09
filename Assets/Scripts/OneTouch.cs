@@ -31,6 +31,7 @@ public class OneTouch
                 pickedObject = hit.collider.gameObject;
                 sj = hit.collider.gameObject.GetComponent<SpringJoint2D>();
                 sj.enabled = true;
+                sj.distance = 0.1f;
                 touchPointTransform.position = hit.transform.position;
                 sj.connectedBody = touchPoint.GetComponent<Rigidbody2D>();
             }
