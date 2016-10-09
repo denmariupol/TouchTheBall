@@ -1,0 +1,23 @@
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2008
+
+Project("{5ABF6689-FDC6-1766-1B21-A8A16927E7D0}") = "Turn The Object", "Assembly-CSharp.csproj", "{7FDF4668-BF75-CD69-0B2A-5E9C5B47254A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7FDF4668-BF75-CD69-0B2A-5E9C5B47254A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7FDF4668-BF75-CD69-0B2A-5E9C5B47254A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7FDF4668-BF75-CD69-0B2A-5E9C5B47254A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7FDF4668-BF75-CD69-0B2A-5E9C5B47254A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = Assembly-CSharp.csproj
+	EndGlobalSection
+EndGlobal
