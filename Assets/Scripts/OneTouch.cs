@@ -10,10 +10,12 @@ public class OneTouch
     private GameObject pickedObject;
     private HingeJoint2D hj;
     private SpringJoint2D sj;
+    private Rigidbody2D rb;
     public void Init ()
     {
         touchPoint = GameObject.FindGameObjectWithTag("TouchPoint");
         touchPointTransform = touchPoint.transform;
+        
     }
 	
     public void MouseTouch()
@@ -30,6 +32,9 @@ public class OneTouch
             {
                 pickedObject = hit.collider.gameObject;
                 sj = hit.collider.gameObject.GetComponent<SpringJoint2D>();
+                rb = hit.collider.gameObject.GetComponent<Rigidbody2D>();
+                rb.angularDrag = 5;
+                rb.drag = 5;
                 sj.enabled = true;
                 sj.distance = 0.1f;
                 touchPointTransform.position = hit.transform.position;
@@ -38,7 +43,6 @@ public class OneTouch
         }
         else if (Input.GetMouseButton(0))
         {
-            Debug.Log(hit.point);
             if (!pickedObject)
                 return;
             
@@ -46,8 +50,13 @@ public class OneTouch
         }
         else if (Input.GetMouseButtonUp(0))
         {
-            pickedObject = null;
-            sj.enabled = false;
+            if (pickedObject)
+            {
+                rb.drag = 0;
+                rb.angularDrag = 0;
+                pickedObject = null;
+                sj.enabled = false;
+            }
         }
     }
  }
