@@ -9,6 +9,7 @@ public class OneTouch
     private Transform touchPointTransform;
     private GameObject pickedObject;
     private SpringJoint2D sj;
+    private DistanceJoint2D dj;
     private Rigidbody2D rb;
     private Vector2 anchor;
     private Vector2 dir;
@@ -36,34 +37,34 @@ public class OneTouch
                 pickedObject = hit.collider.gameObject;
                 sj = hit.collider.gameObject.GetComponent<SpringJoint2D>();
                 rb = hit.collider.gameObject.GetComponent<Rigidbody2D>();
-
+                dj = hit.collider.gameObject.GetComponent<DistanceJoint2D>();
                 rb.angularDrag = 10;
                 rb.drag = 10;
-                sj.enabled = true;
+                dj.enabled = true;
                 dir = (v2FromV3(hit.collider.gameObject.transform.position) - hit.point);
                 distance = (v2FromV3(hit.collider.gameObject.transform.position) - hit.point).magnitude;
                 Debug.Log(distance);
-                sj.distance = 0.1f;
-                sj.frequency = 5;
+                dj.distance = 0.0f;
+                //sj.frequency = 5;
 
                 touchPointTransform.position = hit.transform.position;
-                sj.connectedBody = touchPoint.GetComponent<Rigidbody2D>();
+                dj.connectedBody = touchPoint.GetComponent<Rigidbody2D>();
             }
         }
         else if (Input.GetMouseButton(0))
         {
             if (!pickedObject)
                 return;
-            sj.anchor = dir;
-            sj.frequency = 5;
+            dj.anchor = dir;
+            //sj.frequency = 5;
             rb.drag = 10;
             rb.angularDrag = 10;
             curPos = touchPointTransform.position;
             if(curPos == lastPos)
             {
-                rb.drag = 1;
-                rb.angularDrag = 1;
-                sj.frequency = 0;
+                rb.drag = 0;
+                rb.angularDrag = 0;
+                //sj.frequency = 0;
             }
             lastPos = curPos;
             touchPointTransform.position = hit.point;
@@ -72,12 +73,12 @@ public class OneTouch
         {
             if (pickedObject)
             {
-                sj.anchor = Vector2.zero;
+                dj.anchor = Vector2.zero;
                 touchPointTransform.position = new Vector2(100, 100);
                 rb.drag = 0;
                 rb.angularDrag = 0;
                 pickedObject = null;
-                sj.enabled = false;
+                dj.enabled = false;
             }
         }
     }
